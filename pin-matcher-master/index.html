@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="putnumber" class="form-control" type="text">
+                    <button id="generatebtn" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input class="form-control" id="putsecondnum" type="text">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                              <div class="button" id="seven">7</div>
+                              <div class="button" id="eight">8</div>
+                              <div class="button" id="nine">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" id="four">4</div>
+                              <div class="button" id="five">5</div>
+                              <div class="button" id="six">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" id="one">1</div>
+                              <div class="button" id="two">2</div>
+                              <div class="button" id="three">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button" id="lessthan">&lt;</div>
+                                <div class="button" id="zero">0</div>
+                                <div class="button" id="clear">C</div>
+                            </div>
+                            <div>
+                                <button type="submit" id="submit1" class="submit-btn">Submit</button>
+                                <p id="try" class="action-left">3 try left</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notify-section">
+            <p id="cross" class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id="right" class="notify">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+
+   <script>
+       
+       const generatebtn=document.getElementById("generatebtn");
+
+       generatebtn.addEventListener('click',function()
+       {
+           const x=Math.random()*10000;
+           const y=Math.floor(x);
+           document.getElementById("putnumber").value=y;
+       })
+      function getvalue(allnumber)
+      {
+          const display=document.getElementById("putsecondnum").value;
+          document.getElementById("putsecondnum").value=display+allnumber;
+      }
+
+      const seven=document.getElementById("seven");
+      seven.addEventListener('click',function()
+      {
+          const seventext=document.getElementById("seven").innerText;
+          getvalue(seventext);
+      })
+ 
+      const eight=document.getElementById("eight");
+      eight.addEventListener('click',function()
+      {
+          const seventext=document.getElementById("eight").innerText;
+          getvalue(seventext);
+      })
+
+      const nine=document.getElementById("nine");
+      nine.addEventListener('click',function()
+      {
+          const seventext=document.getElementById("nine").innerText;
+          getvalue(seventext);
+      })
+
+      const six=document.getElementById("six");
+      six.addEventListener('click',function()
+      {
+          const seventext=document.getElementById("six").innerText;
+          getvalue(seventext);
+      })
+
+      const five=document.getElementById("five");
+      five.addEventListener('click',function()
+      {
+          const seventext=document.getElementById("five").innerText;
+          getvalue(seventext);
+      })
+
+      const four=document.getElementById("four");
+      four.addEventListener('click',function()
+      {
+          const seventext=document.getElementById("four").innerText;
+          getvalue(seventext);
+      })
+
+
+      const three=document.getElementById("three");
+      three.addEventListener('click',function()
+      {
+          const seventext=document.getElementById("three").innerText;
+          getvalue(seventext);
+      })
+
+      const two=document.getElementById("two");
+      two.addEventListener('click',function()
+      {
+          const seventext=document.getElementById("two").innerText;
+          getvalue(seventext);
+      })
+
+      const one=document.getElementById("one");
+      one.addEventListener('click',function()
+      {
+          const seventext=document.getElementById("one").innerText;
+          getvalue(seventext);
+      })
+
+      const zero=document.getElementById("zero");
+      zero.addEventListener('click',function()
+      {
+          const seventext=document.getElementById("zero").innerText;
+          getvalue(seventext);
+      })
+
+
+     const clear=document.getElementById("clear");
+     clear.addEventListener('click',function()
+     {
+        document.getElementById("putsecondnum").value="";
+     })
+
+
+
+     const submit1=document.getElementById("submit1");
+     let count=0;
+     submit1.addEventListener('click',function()
+     {
+        document.getElementById("right").style.display="none";
+        document.getElementById("cross").style.display="none";
+        count+=1;
+        if(count==1)
+        {
+            const display=document.getElementById("putsecondnum").value;
+            const display1=document.getElementById("putnumber").value;
+            document.getElementById("try").innerText="2 try left";
+            if(display==display1 && display.length!=0 && display1.length!=0)
+            {
+                document.getElementById("right").style.display="block";
+            }
+            else{
+                if(display.length!=0 && display1.length!=0)
+                document.getElementById("cross").style.display="block";
+            }
+        }
+        else if(count==2)
+        {
+            const display=document.getElementById("putsecondnum").value;
+            const display1=document.getElementById("putnumber").value;
+             document.getElementById("try").innerText="1 try left";
+            if(display==display1 && display.length!=0 && display1.length!=0)
+            {
+                document.getElementById("right").style.display="block";
+            }
+            else{
+                if(display.length!=0 && display1.length!=0)
+                document.getElementById("cross").style.display="block";
+            }
+        }
+        else{
+            const display=document.getElementById("putsecondnum").value;
+            const display1=document.getElementById("putnumber").value;
+            submit1.style.display="none";
+            document.getElementById("try").style.display="none";
+            if(display==display1 && display.length!=0 && display1.length!=0)
+            {
+                document.getElementById("right").style.display="block";
+            }
+            else{
+                if(display.length!=0 && display1.length!=0)
+                document.getElementById("cross").style.display="block";
+            }
+        }
+     })
+
+
+
+
+      const lessthan = document.getElementById("lessthan");
+      lessthan.addEventListener('click',function(){
+        const display=document.getElementById("putsecondnum").value;
+        const cutdisplay=display.slice(0,display.length-1);
+        document.getElementById("putsecondnum").value=cutdisplay;
+      })
+
+
+
+
+   </script>
+
+
+</body>
+</html>
